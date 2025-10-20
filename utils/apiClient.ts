@@ -30,12 +30,18 @@ export class ApiClient {
 
   async createFavorite(
     token: string,
-    data: { title: string; lat: number; lon: number; color?: string }
+    data: { title?: string; lat?: number; lon?: number; color?: string }
   ) {
     const form = new URLSearchParams();
-    form.append("title", data.title);
-    form.append("lat", data.lat.toString());
-    form.append("lon", data.lon.toString());
+    if (data.title) {
+      form.append("title", data.title);
+    }
+    if (data.lat) {
+      form.append("lat", data.lat.toString());
+    }
+    if (data.lon) {
+      form.append("lon", data.lon.toString());
+    }
     if (data.color) {
       form.append("color", data.color);
     }
